@@ -1216,12 +1216,20 @@
       <option name="presentableId" value="Default" />
       <updated>1516898185334</updated>
       <workItem from="1516898186622" duration="727000" />
-      <workItem from="1517556905393" duration="10374000" />
+      <workItem from="1517556905393" duration="10545000" />
     </task>
+    <task id="LOCAL-00001" summary="Added HelloWorld java classes.">
+      <created>1517570484280</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1517570484280</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11101000" />
+    <option name="totallyTimeSpent" value="11272000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="791" extended-state="6" />
@@ -1260,6 +1268,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <MESSAGE value="Added HelloWorld java classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HelloWorld java classes." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
