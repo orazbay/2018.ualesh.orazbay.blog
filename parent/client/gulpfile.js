@@ -24,10 +24,10 @@ task('clean',function () {
 
 });
 task('less',function () {
-    return gulp.src('front/less/*.less').pipe(less()).pipe(gulp.dest(outDir()));
+    return gulp.src('front/less/main.less').pipe(less()).pipe(gulp.dest(path.resolve(outDir(),"css")));
 });
 task('pug',function () {
-    return gulp.src('front/pug/*.pug').pipe(pug()).pipe(gulp.dest(outDir()));
+    return gulp.src('front/pug/index.pug').pipe(pug()).pipe(gulp.dest(outDir()));
 });
 task('par',gulp.parallel('less','pug'));
 task('ser',gulp.series('clean','par'));
@@ -87,14 +87,27 @@ task('webpack', function (callback) {
     });
 });
 task('server', function (back) {
-    browserSync.init({server: path.resolve('build', 'public')});
+    browserSync.init({server: path.resolve('build', 'public','blog')});
 
     browserSync.watch('build/public/**/*.*').on('change', browserSync.reload);
 
     back();
 });
+task('copy', function () {
+    gulp.src([
+        "front/iconfont/**/*.*"
+    ]).pipe(gulp.dest(path.resolve(outDir(), 'iconfont')));
+    gulp.src([
+        "node_modules/zone.js/dist/zone.min.js",
+        "node_modules/core-js/client/shim.min.js"
+    ]).pipe(gulp.dest(path.resolve(outDir(), 'js')));
+    return gulp.src([
+        "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+        "node_modules/bootstrap/dist/css/bootstrap.min.css"
+    ]).pipe(gulp.dest(path.resolve(outDir(), 'css')));
+});
 task('start', gulp.series(
-        'clean', 'par', function (callback) {
+        'clean', 'par','copy', function (callback) {
             isWatch = true;
             callback();
         }, 'webpack', 'server',
@@ -102,3 +115,5 @@ task('start', gulp.series(
             gulp.watch('front/pug/**/*.pug', gulp.series('pug'));
             gulp.watch('front/less/**/*.less', gulp.series('less'));
         }));
+
+

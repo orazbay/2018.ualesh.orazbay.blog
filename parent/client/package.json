@@ -10,7 +10,8 @@
     "gulp_par": "gulp par",
     "gulp_webpack": "gulp webpack",
     "gulp_start": "gulp start",
-    "gulp_server": "gulp server"
+    "gulp_server": "gulp server",
+    "gulp_copy": "gulp copy"
   },
   "author": "oraz",
   "license": "ISC",

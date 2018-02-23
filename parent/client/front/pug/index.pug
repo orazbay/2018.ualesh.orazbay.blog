@@ -1,9 +1,25 @@
-extends _page
-
-block head
-    title Help Desk Stand
-    script window.urlPrefix = 'http://' + location.hostname + ':1314/education/api'
-
-block body
-    blog app
-    script(src="blog/js/main.js", type="text/javascript")
+doctype html
+html(lang='en')
+    head
+        title Bootstrap Example
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')
+    body
+        .container
+            h2 Simple form
+            form(action='/action_page.php')
+                .form-group
+                    label(for='email') Email:
+                    input#email.form-control(type='email', placeholder='Enter email', name='email')
+                .form-group
+                    label(for='pwd') Password:
+                    input#pwd.form-control(type='password', placeholder='Enter password', name='pswd')
+                .form-check
+                    label.form-check-label
+                        input.form-check-input(type='checkbox', name='remember')
+                        |  Remember me
+                button.btn.btn-primary(type='submit') Submit
