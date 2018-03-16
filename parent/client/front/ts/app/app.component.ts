@@ -1,13 +1,15 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../provider/HttpService";
 import "rxjs/add/operator/toPromise";
+import {User} from "./user";
 
 
 @Component({
     selector:"blog_app",
-    template:`<h1> text is {{text}}</h1>
+    template:`<h1> response code is {{responseCode}}</h1>
+    <h1> response message is {{responseMessage}}</h1>
     <div class="wrapper fadeInDown">
-        <div id="formContent">
+        <div id="formContent" >
             <!-- Tabs Titles -->
             <h2 class="active"> Sign In </h2>
             <h2 class="inactive underlineHover">Sign Up </h2>
@@ -18,10 +20,10 @@ import "rxjs/add/operator/toPromise";
             </div>
 
             <!-- Login Form -->
-            <form>
-                <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+            <form  (submit)="onSubmitButtonClicked()">
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" [(ngModel)]="User.username" >
+                <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" [(ngModel)]="User.password">
+                <input type="submit" class="fadeIn fourth" value="Log In" >
             </form>
 
             <!-- Remind Passowrd -->
@@ -33,16 +35,34 @@ import "rxjs/add/operator/toPromise";
     </div>`
 })
 export class AppComponent implements OnInit {
-    private text:string;
+    private responseCode:string;
+    private responseMessage:string;
+
+    User: any={};
+    parameters : { [key: string]: string} = {};
 
     ngOnInit(): void {
-        this.httpService.get("/getMainText").toPromise().then(
-            result =>{
+        // this.httpService.get("/getMainText").toPromise().then(
+        //     result =>{
+        //         this.text=result.json();
+        //     },
+        //     error =>{
+        //         this.text="Something is wrong";
+        //
+        //     }
+        // )
+    }
+    onSubmitButtonClicked():void{
+        this.parameters["username"]=this.User.username;
+        this.parameters["password"]=this.User.password;
 
-                this.text=result.json().text;
+        this.httpService.get("/getMainText",this.parameters).toPromise().then(
+            result =>{
+                this.responseCode=result.json().responseCode;
+                this.responseMessage=result.json().responseMessage;
             },
             error =>{
-                this.text="Something is wrong";
+                this.responseMessage="Something is wrong";
 
             }
         )
